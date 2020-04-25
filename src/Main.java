@@ -33,19 +33,40 @@ public class Main{
 		Map<String, String> theMap = new Hashtable<String, String>();
 		List<String> lista3 = new ArrayList<String>();
 		List<String> lista4 = new ArrayList<String>();
-		SplayTree sp = new SplayTree();
-
+		Map<String,String> Mp = new hashMap(); 
+		hashMap hp = new hashMap();
+		Factory factory = new Factory();
 		
 		
 		//Comenzar programa
 		System.out.println("------------------");
 		System.out.println("|   Bienvenido   |");
 		System.out.println("------------------");
-
+		Scanner teclado1 = new Scanner (System.in);
 		
 		System.out.println(System.getProperty("user.dir") + "\\nombre");
 
-
+		boolean seguir = true;
+		int op = 0;
+		while(seguir) {
+			System.out.println("¿Que implementacion desea usar? \n1. HashMap \n2. SplayTree");
+			try {
+				op = teclado1.nextInt();
+				if(op == 1) {
+					Mp = factory.getType(op);
+				}
+				else if(op == 2) {
+					Mp = factory.getType(op);
+				}else {
+					throw new Exception();
+				}
+				seguir = false;
+			}catch(Exception E) {
+				
+			}
+			
+		}
+		
 		File archivo_Dicc = new File(System.getProperty("user.dir") + "\\Spanish.txt");
 		File archivo_pal = new File(System.getProperty("user.dir") + "\\texto.txt");
 		if(archivo_Dicc.exists() && archivo_pal.exists()) {
@@ -59,28 +80,43 @@ public class Main{
 				int ref = 0;
 				while((linea = br.readLine()) != null) {
 					int h = linea.length();
-					//System.out.println(h);
-					//System.out.println("no con to: " + linea);
-					//System.out.println("prueba: " + p);
 					String[] lineas = linea.split("	");
 					String lineaa = lineas[0];
-					//System.out.println("p");
-					//System.out.println(lineaa);
 					String pa = lineaa.substring(0,1);
-					//System.out.println("Pa");
-					//System.out.println(pa);
 					if(pa.equals("#")) {
-						System.out.println("Esta linea no cuenta");
 					}
 					else {
-						Strings.add(lineaa);
-						lineaa = lineas[0];
-						//System.out.println(lineaa);
-						Strings.add(lineaa);
+						String lineaaa = lineas[0];
+						Strings.add(lineaaa);
 						lineaa = lineas[1];
-						//System.out.println(lineaa);
+						int n = lineaa.length();
+						int a = n-6;
+						int b = n-11;
+						if(n>6) {
+							String noun = lineaa.substring(a,n);
+							//System.out.println(noun);
+							if(noun.equals("[Noun]") || noun.equals("[Verb]")){
+								//System.out.println("Si entro");
+								lineaa = lineaa.substring(0,a);
+							}
+						}
+						if(n>11) {
+							int z = lineaa.length();
+							String adjective = lineaa.substring(b,z);
+							if(adjective.equals("[Adjective]")) {
+								lineaa = lineaa.substring(0,b);
+							}
+						}
+						int f = lineaa.length();
+						if(f>8) {
+							int c = f-8;
+							String adverb = lineaa.substring(c,f);
+							if(adverb.equals("[Adverb]")) {
+								lineaa = lineaa.substring(0,c);
+							}
+						}
 						Strings.add(lineaa);
-						
+						Mp.put(lineaaa, lineaaa);
 					}
 					ref++;
 				}
@@ -105,23 +141,45 @@ public class Main{
 				int cont = values.length;
 				int var = Strings.size();
 				
-				lista3 = sp.keys(Strings);
+				
+				if(op == 1) {
+					lista3 = hp.keys(Strings);
+					System.out.println("-----------------------------------------");
+					//System.out.println("esta es la lista de llaves: " + lista3);
+					
+					lista4 = hp.value(Strings);
+					//System.out.println("esta es la lista de valores: " + lista4);
+					System.out.println("--------------------------------------------------");
+					ref = 7476;
+					System.out.println("Esta es la referencia: " + ref);
+					
+					Mp = hp.dicc(lista3, lista4, ref);
+					System.out.println("El diccionario: " + Mp);
+					System.out.println("--------------------------------------------------");
+					System.out.println("");
+					System.out.println("Su traduccion es la siguiente: ");
+					System.out.println(hp.answer(values, Mp));
+				}
+				/**lista3 = hp.keys(Strings);
 				System.out.println("-----------------------------------------");
-				System.out.println("esta es la lista de llaves: " + lista3);
+				//System.out.println("esta es la lista de llaves: " + lista3);
 				
-				lista4 = sp.value(Strings);
-				System.out.println("esta es la lista de valores: " + lista4);
+				lista4 = hp.value(Strings);
+				//System.out.println("esta es la lista de valores: " + lista4);
 				System.out.println("--------------------------------------------------");
+				ref = 7476;
+				System.out.println("Esta es la referencia: " + ref);
 				
-				
-				theMap = sp.dicc(lista3, lista4, ref);
+				Mp = hp.dicc(lista3, lista4, ref);
 		
-				System.out.println("El diccionario: " + theMap);
+				System.out.println("El diccionario: " + Mp);
 				System.out.println("--------------------------------------------------");
 				System.out.println("");
 				System.out.println("Su traduccion es la siguiente: ");
-				System.out.println(sp.answer(values, theMap));
-			
+				System.out.println(hp.answer(values, Mp));*/
+				else if(op == 2) {
+					System.out.println("Esto no se ha hecho");
+				}
 			
 		}
 		//Terminar programa	
