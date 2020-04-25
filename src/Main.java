@@ -1,6 +1,5 @@
 /**
  * @author andres Say Agosto 19705
- * @author Diego Alvarez 19498
  * traductor ingles-español
  */
 
@@ -34,6 +33,7 @@ public class Main{
 		Map<String, String> theMap = new Hashtable<String, String>();
 		List<String> lista3 = new ArrayList<String>();
 		List<String> lista4 = new ArrayList<String>();
+		SplayTree sp = new SplayTree();
 
 		
 		
@@ -49,21 +49,20 @@ public class Main{
 		File archivo_Dicc = new File(System.getProperty("user.dir") + "\\Spanish.txt");
 		File archivo_pal = new File(System.getProperty("user.dir") + "\\texto.txt");
 		if(archivo_Dicc.exists() && archivo_pal.exists()) {
-			try {
 				FileReader fr = new FileReader(archivo_Dicc);
 				BufferedReader br = new BufferedReader(fr);
 				
 				String linea = " ";
 				ArrayList<String> Strings = new ArrayList<String>();
-				//System.out.println("1: " + linea);
-				//System.out.println("aqui");
+				System.out.println("1: " + linea);
+				System.out.println("aqui");
 				int ref = 0;
 				while((linea = br.readLine()) != null) {
-					//int h = linea.length();
+					int h = linea.length();
 					//System.out.println(h);
 					//System.out.println("no con to: " + linea);
 					//System.out.println("prueba: " + p);
-					String[] lineas = linea.split(" ");
+					String[] lineas = linea.split("	");
 					String lineaa = lineas[0];
 					//System.out.println("p");
 					//System.out.println(lineaa);
@@ -74,12 +73,13 @@ public class Main{
 						System.out.println("Esta linea no cuenta");
 					}
 					else {
-						System.out.println(lineaa);
 						Strings.add(lineaa);
 						lineaa = lineas[0];
+						//System.out.println(lineaa);
 						Strings.add(lineaa);
-						//lineaa = lineas[1];
-						//Strings.add(lineaa);
+						lineaa = lineas[1];
+						//System.out.println(lineaa);
+						Strings.add(lineaa);
 						
 					}
 					ref++;
@@ -88,9 +88,9 @@ public class Main{
 				//for(int i=0; i<Strings.size();i++){
 				//	System.out.println("Palabras: " + Strings.get(i));
 				//} 
-				for(int i=0; i<Strings.size();i++){
-					System.out.println("Palabras: " + Strings.get(i));
-				} 
+				//for(int i=0; i<Strings.size();i++){
+					//System.out.println("Palabras: " + Strings.get(i));
+				//} 
 				br.close();
 				fr.close();
 				
@@ -105,10 +105,22 @@ public class Main{
 				int cont = values.length;
 				int var = Strings.size();
 				
+				lista3 = sp.keys(Strings);
+				System.out.println("-----------------------------------------");
+				System.out.println("esta es la lista de llaves: " + lista3);
 				
-			}catch(Exception e) {
-				System.out.println("Error al leer el archivo");
-			}
+				lista4 = sp.value(Strings);
+				System.out.println("esta es la lista de valores: " + lista4);
+				System.out.println("--------------------------------------------------");
+				
+				
+				theMap = sp.dicc(lista3, lista4, ref);
+		
+				System.out.println("El diccionario: " + theMap);
+				System.out.println("--------------------------------------------------");
+				System.out.println("");
+				System.out.println("Su traduccion es la siguiente: ");
+				System.out.println(sp.answer(values, theMap));
 			
 			
 		}
