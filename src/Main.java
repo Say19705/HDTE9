@@ -27,14 +27,14 @@ public class Main{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) throws Exception{
 		/**
-		 * Inicializar la clase binaryTree
+		 * Inicializar 
 		 * y las listas para podes formar el diccionario y luego recorrerlo
 		 */
-		Map<String, String> theMap = new Hashtable<String, String>();
+
 		List<String> lista3 = new ArrayList<String>();
 		List<String> lista4 = new ArrayList<String>();
 		Map<String,String> Mp = new hashMap(); 
-		hashMap hp = new hashMap();
+		Lectura l = new Lectura();
 		Factory factory = new Factory();
 		
 		
@@ -94,9 +94,7 @@ public class Main{
 						int b = n-11;
 						if(n>6) {
 							String noun = lineaa.substring(a,n);
-							//System.out.println(noun);
 							if(noun.equals("[Noun]") || noun.equals("[Verb]")){
-								//System.out.println("Si entro");
 								lineaa = lineaa.substring(0,a);
 							}
 						}
@@ -116,10 +114,13 @@ public class Main{
 							}
 						}
 						Strings.add(lineaa);
-						Mp.put(lineaaa, lineaaa);
 					}
 					ref++;
 				}
+				
+				ref = 7476;
+				
+
 				// AQUI PROBE LO INGRESADO EN EL ARRAYLIST Y SI ESTA SIENDO AGREGADO
 				//for(int i=0; i<Strings.size();i++){
 				//	System.out.println("Palabras: " + Strings.get(i));
@@ -143,42 +144,59 @@ public class Main{
 				
 				
 				if(op == 1) {
-					lista3 = hp.keys(Strings);
-					System.out.println("-----------------------------------------");
-					//System.out.println("esta es la lista de llaves: " + lista3);
+					lista3 = l.keys(Strings);
 					
-					lista4 = hp.value(Strings);
-					//System.out.println("esta es la lista de valores: " + lista4);
-					System.out.println("--------------------------------------------------");
-					ref = 7476;
-					System.out.println("Esta es la referencia: " + ref);
+					lista4 = l.value(Strings);
+
 					
-					Mp = hp.dicc(lista3, lista4, ref);
+					Mp = l.dicc(lista3, lista4, ref);
 					System.out.println("El diccionario: " + Mp);
 					System.out.println("--------------------------------------------------");
 					System.out.println("");
 					System.out.println("Su traduccion es la siguiente: ");
-					System.out.println(hp.answer(values, Mp));
+
+					
+					String answer = "";
+					String v = "";
+					int contador = values.length;
+					for(int i = 0; i<contador;i++) {
+						boolean h = Mp.containsKey(values[i]);
+						if(h == true) {
+							v = Mp.get(values[i]);
+						}
+						else {
+							v = ("*")+values[i]+("*");
+						}
+						answer = answer + (" ") + v;
+					}
+					System.out.println(answer);
 				}
-				/**lista3 = hp.keys(Strings);
-				System.out.println("-----------------------------------------");
-				//System.out.println("esta es la lista de llaves: " + lista3);
-				
-				lista4 = hp.value(Strings);
-				//System.out.println("esta es la lista de valores: " + lista4);
-				System.out.println("--------------------------------------------------");
-				ref = 7476;
-				System.out.println("Esta es la referencia: " + ref);
-				
-				Mp = hp.dicc(lista3, lista4, ref);
-		
-				System.out.println("El diccionario: " + Mp);
-				System.out.println("--------------------------------------------------");
-				System.out.println("");
-				System.out.println("Su traduccion es la siguiente: ");
-				System.out.println(hp.answer(values, Mp));*/
 				else if(op == 2) {
+					
+					lista3 = l.keys(Strings);
+					lista4 = l.value(Strings);					
+					Mp = l.dicc(lista3, lista4, ref);
+					System.out.println("El diccionario: " + Mp);
+					System.out.println("--------------------------------------------------");
+					System.out.println("");
+					System.out.println("Su traduccion es la siguiente: ");
 					System.out.println("Esto no se ha hecho");
+					
+					String answer = "";
+					String v = "";
+					int contador = values.length;
+					for(int i = 0; i<contador;i++) {
+						boolean h = Mp.containsKey(values[i]);
+						if(h == true) {
+							v = Mp.get(values[i]);
+						}
+						else {
+							v = ("*")+values[i]+("*");
+						}
+						answer = answer + (" ") + v;
+					}
+					System.out.println(answer);
+					
 				}
 			
 		}
