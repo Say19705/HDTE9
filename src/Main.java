@@ -1,5 +1,6 @@
 /**
  * @author andres Say Agosto 19705
+ * @author Diego Alvarez 19498
  * traductor ingles-español
  */
 
@@ -54,12 +55,12 @@ public class Main{
 				
 				String linea = " ";
 				ArrayList<String> Strings = new ArrayList<String>();
-				System.out.println("1: " + linea);
-				System.out.println("aqui");
+				//System.out.println("1: " + linea);
+				//System.out.println("aqui");
 				int ref = 0;
 				while((linea = br.readLine()) != null) {
-					int h = linea.length();
-					System.out.println(h);
+					//int h = linea.length();
+					//System.out.println(h);
 					//System.out.println("no con to: " + linea);
 					//System.out.println("prueba: " + p);
 					String[] lineas = linea.split(" ");
@@ -77,13 +78,19 @@ public class Main{
 						Strings.add(lineaa);
 						lineaa = lineas[0];
 						Strings.add(lineaa);
-						lineaa = lineas[1];
-						Strings.add(lineaa);
+						//lineaa = lineas[1];
+						//Strings.add(lineaa);
 						
 					}
 					ref++;
 				}
-
+				// AQUI PROBE LO INGRESADO EN EL ARRAYLIST Y SI ESTA SIENDO AGREGADO
+				//for(int i=0; i<Strings.size();i++){
+				//	System.out.println("Palabras: " + Strings.get(i));
+				//} 
+				for(int i=0; i<Strings.size();i++){
+					System.out.println("Palabras: " + Strings.get(i));
+				} 
 				br.close();
 				fr.close();
 				
