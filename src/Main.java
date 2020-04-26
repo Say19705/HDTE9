@@ -150,7 +150,7 @@ public class Main{
 
 					
 					Mp = l.dicc(lista3, lista4, ref);
-					System.out.println("El diccionario: " + Mp);
+					//System.out.println("El diccionario: " + Mp);
 					System.out.println("--------------------------------------------------");
 					System.out.println("");
 					System.out.println("Su traduccion es la siguiente: ");
@@ -176,7 +176,7 @@ public class Main{
 					lista3 = l.keys(Strings);
 					lista4 = l.value(Strings);					
 					Mp = l.dicc(lista3, lista4, ref);
-					System.out.println("El diccionario: " + Mp);
+					//System.out.println("El diccionario: " + Mp);
 					System.out.println("--------------------------------------------------");
 					System.out.println("");
 					System.out.println("Su traduccion es la siguiente: ");
