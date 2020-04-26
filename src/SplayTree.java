@@ -19,7 +19,7 @@ public class SplayTree implements Map{
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubh
 		
 	}
 
